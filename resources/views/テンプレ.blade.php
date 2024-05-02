@@ -4,6 +4,10 @@
         /css/style.css
     </x-slot>
 
+    {{-- メタタグ ※空欄 --}}
+    <x-slot name='meta_tag'>
+    </x-slot>
+
     {{-- audioファイルのパス --}}
     <x-slot name='audio_path'>
         /storage/audio/

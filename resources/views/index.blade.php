@@ -4,6 +4,10 @@
         /css/style.css
     </x-slot>
 
+    {{-- メタタグ ※空欄 --}}
+    <x-slot name='meta_tag'>
+    </x-slot>
+
     {{-- audioファイルのパス --}}
     <x-slot name='audio_path'>
         /storage/audio/top.mp3
@@ -23,7 +27,8 @@
     </x-slot>
 
     <img src="{{ asset('storage/images/aikon.PNG') }}" alt="W"> <br><br>
-    <input type="button" value="Wをはじめる" class="menu_button" onclick="location.href = '/select'"><br> <br>
+    <input type="button" value="Wをはじめる" class="menu_button" onclick="location.href = '{{ route('game.select') }}'"><br>
+    <br>
     <input type="button" value="みんなのW" class="menu_button"
         onclick="location.href = '{{ route('greatW.latest') }}'"><br> <br>
     <strong>◇ルール説明◇</strong>

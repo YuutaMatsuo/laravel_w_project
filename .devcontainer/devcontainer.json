@@ -15,7 +15,17 @@
 				"GitHub.copilot",
 				"GitHub.copilot-chat",
 				"oderwat.indent-rainbow",
-				"mosapride.zenkaku"
+				"mosapride.zenkaku",
+				"xdebug.php-debug",
+				"MehediDracula.php-namespace-resolver",
+				"cweijan.vscode-database-client2",
+				"onecentlin.laravel5-snippets",
+				"mikestead.dotenv",
+				"EditorConfig.EditorConfig",
+				"onecentlin.laravel-blade",
+				"ryannaddy.laravel-artisan",
+				"amiralizadeh9480.laravel-extra-intellisense",
+				"shufo.vscode-blade-formatter"
 			],
 			"settings": {}
 		}

@@ -4,9 +4,14 @@
         /css/style.css
     </x-slot>
 
+    {{-- メタタグ ※空欄 --}}
+    <x-slot name='meta_tag'>
+        <meta http-equiv="refresh" content="5; URL={{ route('game.animation') }}">
+    </x-slot>
+
     {{-- audioファイルのパス --}}
     <x-slot name='audio_path'>
-        /storage/audio/countdown1.mp3
+        /storage/audio/wait1.mp3
     </x-slot>
 
     {{-- ディレイ秒数 --}}
@@ -20,13 +25,10 @@
 
     {{-- トップへ戻るボタン ※空欄 --}}
     <x-slot name='button'>
-        <input class="button" type="button" value="TOP画面に戻る" onclick="location.href = '/'">
     </x-slot>
 
     {{-- コンテンツ --}}
-    <h2>選択された人数は{{ $playerCnt }}人です</h2><br>
-
-    @foreach ($roomList as $room)
-        <p>$room</p>
-    @endforeach
+    <h2>W作成中</h2>
+    ＼ちょっと待ってね／<br>
+    <img src="{{ asset('/storage/images/mazemaze.GIF') }}" alt="W"><br>
 </x-layout>

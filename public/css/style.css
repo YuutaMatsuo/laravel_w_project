@@ -5,6 +5,12 @@ body {
     text-align: center;
 }
 
+table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+
 .button {
     background-color: #239dda;
 }
@@ -12,4 +18,9 @@ body {
 .menu_button {
     background-color: #239dda;
     width: 10%;
+}
+
+.createrName {
+    text-align: right;
+    margin-right: 10px;
 }

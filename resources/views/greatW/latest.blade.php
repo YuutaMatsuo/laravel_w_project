@@ -4,6 +4,10 @@
         /css/greatW_style.css
     </x-slot>
 
+    {{-- メタタグ ※空欄 --}}
+    <x-slot name='meta_tag'>
+    </x-slot>
+
     {{-- audioファイルのパス --}}
     <x-slot name='audio_path'>
         /storage/audio/greatW.mp3
@@ -35,7 +39,7 @@
 
     {{-- トップへ戻るボタン --}}
     <x-slot name='button'>
-        <input class="button" type ="button" value ="TOP画面に戻る" onclick ="location.href = '/'"><br><br>
+        <input class="button" type ="button" value ="TOP画面に戻る" onclick ="location.href = '{{ route('top') }}'"><br><br>
     </x-slot>
 
     {{-- コンテンツ --}}

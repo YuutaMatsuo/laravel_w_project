@@ -6,7 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>W</title>
+    {{ $meta_tag }}
     <link rel="stylesheet" href="{{ asset($style_path) }}">
+    <script>
+        var dblClickFlag = null;
+
+        function ThroughDblClick() {
+            console.log(dblClickFlag == null);
+            // ダブルクリック（連続ポスト）の制御
+            if (dblClickFlag == null) {
+                dblClickFlag = 1;
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -17,7 +32,7 @@
     {{-- ここにコンテンツが表示される --}}
     {{ $slot }}
 
-    {{--メニューバー --}}
+    {{-- メニューバー --}}
     {{ $menu }}
 
     {{-- ボタン --}}
