@@ -44,22 +44,24 @@
 
     {{-- コンテンツ --}}
     {{-- ここに投稿されたお題15件が表示される --}}
+    @foreach ($results as $result)
     <table class="post_table" align="center" border="1" bgcolor="#ffffdb">
         <tr>
             <td>
                 {{-- 投稿された文 --}}
-                <p class="text">最新のWの確認用テキスト</p>
+                <p class="text"> {{ $result->completed_text }} </p>
                 <div class="post_data">
                     {{-- 作成者と作成日時 --}}
                     <p class="created_at">
-                        Aチームのみんな<br>
-                        2024-04-28
+                        {{ $result->user_names }} <br>
+                        {{ $result->created_at }}
                     </p>
                     {{-- いいねをまとめているdivタグ --}}
                     <div>
-                        <p class="good_button">＼38いいね／</p>
-                        <form action="書き換える" method="post">
-                            <input type="hidden" name="wid" value=書き換える>
+                        <p class="good_button">＼ {{ $result->good }} いいね／</p>
+                        <form action=" {{ route('greatW.addGood', ['type' => 'latest']) }}" method="post">
+                            @csrf
+                            <input type="hidden" name="wid" value= {{ $result->id}}>
                             <input type="image" name="submit" src="{{ asset('storage/images/B_iine.jpg') }}"
                                 width="50" height="50" alt="いいね">
                         </form>
@@ -68,4 +70,5 @@
             </td>
         </tr>
     </table><br>
+    @endforeach
 </x-layout>

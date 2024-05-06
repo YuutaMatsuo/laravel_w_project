@@ -6,7 +6,7 @@
 
     {{-- メタタグ ※空欄 --}}
     <x-slot name='meta_tag'>
-        <meta http-equiv="refresh" content="5; URL={{ route('game.animation') }}">
+        <meta http-equiv="refresh" content="0; URL={{ route('game.waiting') }}">
     </x-slot>
 
     {{-- audioファイルのパス --}}

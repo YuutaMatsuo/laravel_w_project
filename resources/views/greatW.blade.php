@@ -59,9 +59,8 @@
                     {{-- いいねをまとめているdivタグ --}}
                     <div>
                         <p class="good_button">＼ {{ $result->good }} いいね／</p>
-                        <form action=" {{ route('greatW.addGood', ['type' => 'popular']) }}" method="post">
-                            @csrf
-                            <input type="hidden" name="wid" value= {{ $result->id}}>
+                        <form action="書き換える" method="post">
+                            <input type="hidden" name="wid" value=書き換える>
                             <input type="image" name="submit" src="{{ asset('storage/images/B_iine.jpg') }}"
                                 width="50" height="50" alt="いいね">
                         </form>

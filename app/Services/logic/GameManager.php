@@ -2,6 +2,12 @@
 
 namespace App\Services\logic;
 
+use App\Models\Result;
+use App\Models\What;
+use App\Models\When;
+use App\Models\Where;
+use App\Models\Who;
+
 // ゲームに関わる処理をまとめたクラス
 class GameManager
 {
@@ -38,15 +44,58 @@ class GameManager
     }
 
     // 未回答のお題にランダムでお題を格納
-    public function setRandomText($gameData)
+    public function createText($gameData)
     {
-        $ansCnt = $gameData->getAnsweredCnt(); // お題の回答状況
         $topicList = $gameData->getTopicList(); // お題のリスト
 
-        // 未回答のお題にランダムでお題を格納
-        for ($i = $ansCnt; $i < count($topicList); $i++) {
-            $topicList[$i]->setAnswer('テスト投稿');
-            $topicList[$i]->setCreaterName('名無しさん');
+        for($i = 0; $i < count($topicList); $i++){
+            foreach($topicList as $topic){
+                if($topic->getId() === $i){
+                    if($topic->getAnswer() == null){
+                        // 未回答のお題にデータベースからランダムでお題を取得
+                        $topic->setAnswer($this->getRandomText($i));
+                    } else {
+                        // 回答済みのお題をデータベースに登録
+                        $text = $topic->getAnswer();
+                        $name = $topic->getCreaterName();
+                        $this->insertText($i, $text, $name);
+                    }
+                }
+            }
+        }
+    }
+
+    // データベースからランダムでお題の回答を1件取得
+    public function getRandomText($id)
+    {
+        switch($id){
+            case 0:
+                return When::inRandomOrder()->first()->text;
+            case 1:
+                return Where::inRandomOrder()->first()->text;
+            case 2:
+                return Who::inRandomOrder()->first()->text;
+            case 3:
+                return What::inRandomOrder()->first()->text;
+        }
+    }
+
+    // データベースへお題の回答を登録
+    public function insertText($id, $text, $name)
+    {
+        switch($id){
+            case 0:
+                When::create(['text' => $text, 'user_name' => $name]);
+                break;
+            case 1:
+                Where::create(['text' => $text, 'user_name' => $name]);
+                break;
+            case 2:
+                Who::create(['text' => $text, 'user_name' => $name]);
+                break;
+            case 3:
+                What::create(['text' => $text, 'user_name' => $name]);
+                break;
         }
     }
 
@@ -55,6 +104,7 @@ class GameManager
         {
             $topicList = $gameData->getTopicList(); // お題のリスト
             $completedTexts = []; // 回答のリスト
+            $completedText = ''; // 回答
             $createrNames = ''; // お題回答者の名前
 
 
@@ -68,8 +118,21 @@ class GameManager
                 }
             }
 
+            // 生成した完成文を文字列に変換
+            foreach($completedTexts as $text){
+                $completedText .= $text;
+            }
+            // 完成文とお題の回答者の名前をデータベースに登録
+            $this->insertSentence($completedText, substr($createrNames, 0, -2));
+
             // 完成文とお題回答者の名前をゲームデータにセット
             $gameData->setCompletedText($completedTexts);
             $gameData->setCreaterNames(substr($createrNames, 0, -2));
+        }
+
+        public function insertSentence($completedTexts, $createrNames)
+        {
+            // データベースに完成文を登録
+            Result::create(['completed_text' => $completedTexts, 'user_names' => $createrNames, 'good' => 0]);
         }
 }

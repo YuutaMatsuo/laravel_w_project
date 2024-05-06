@@ -60,13 +60,13 @@ class GameController extends Controller
 
             return view('game.inputForm', ['title' => $title, 'theme' => $theme, 'conjunction' => $conjunction]);
         } else {
-            return redirect()->route('game.waiting');
+            return view('game.waiting');
         }
     }
 
     // 結果出力待ち画面
     // データベース登録処理
-    public function waiting(Request $request)
+    public function create(Request $request)
     {
         // サービスクラスのインスタンス化
         $gm = new GameManager();
@@ -74,20 +74,11 @@ class GameController extends Controller
         $gameData = $request->session()->get('gameData');
 
         // 未回答のお題にお題を格納
-        $gm->setRandomText($gameData);
+        $gm->createText($gameData);
         $gm->createSentence($gameData);
         // セッションへデータの格納
         $request->session()->put('gameData', $gameData);
 
-        return view('game.waiting');
-    }
-
-    public function animation(Request $request)
-    {
-        $gameData = $request->session()->get('gameData');
-
         return view('game.animation');
     }
-
-
 }
