@@ -1,0 +1,45 @@
+body {
+    text-align: center;
+    background-image: url(../storage/images/haikei1.PNG);
+    background-repeat: repeat;
+    background-position: center;
+}
+
+table {
+    width:500px;
+}
+
+.button {
+    background-color: #239dda;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.post_table {
+    width:600px;
+    height:500;
+}
+
+.text {
+    font-size:20px;
+    margin-top:30px;
+}
+
+.post_data {
+    display:flex;
+    justify-content:space-between;
+    width:500px;
+    margin:0 auto;
+    padding:10px;
+}
+
+.created_at {
+    margin-left:20px;
+    font-size:15px;
+}
+
+.good_button {
+    margin:0
+}
